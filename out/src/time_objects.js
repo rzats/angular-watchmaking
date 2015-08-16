@@ -5,33 +5,66 @@ System.registerModule("../../src/time_objects.js", [], function() {
     function Stopwatch(speed) {
       this.counter = 0;
       this.speed = speed;
-      this.startTime = new Date().getTime();
     }
     return ($traceurRuntime.createClass)(Stopwatch, {
       tick: function() {
-        var diff = (new Date().getTime() - this.startTime) - this.counter * this.speed;
-        this.counter++;
-        window.setTimeout(this.tick.bind(this), (this.speed - diff));
-      },
-      log: function() {
-        console.log(this.counter * this.speed);
+        var diff = (new Date().getTime() - this.startTime) - this.counter;
+        this.counter += this.speed;
+        this.ticker = window.setTimeout(this.tick.bind(this), (this.speed - diff));
       },
       start: function() {
+        this.startTime = new Date().getTime();
         this.ticker = window.setTimeout(this.tick.bind(this), this.speed);
       },
       pause: function() {
         window.clearTimeout(this.ticker);
       },
+      unpause: function() {
+        this.ticker = window.setTimeout(this.tick.bind(this), this.speed);
+      },
       restart: function() {
         window.clearTimeout(this.ticker);
         this.counter = 0;
-        this.startTime = Date.now();
+        this.start();
       }
     }, {});
   }();
-  var s = new Stopwatch(50);
+  var Timer = function() {
+    function Timer(speed, duration) {
+      this.counter = duration;
+      this.speed = speed;
+      this.duration = duration;
+    }
+    return ($traceurRuntime.createClass)(Timer, {
+      tick: function() {
+        if (this.counter <= 0) {
+          this.counter = 0;
+          window.clearTimeout(this.ticker);
+        } else {
+          var diff = (new Date().getTime() - this.startTime) - (this.duration - this.counter);
+          this.counter -= this.speed;
+          this.ticker = window.setTimeout(this.tick.bind(this), (this.speed - diff));
+        }
+      },
+      start: function() {
+        this.startTime = new Date().getTime();
+        this.ticker = window.setTimeout(this.tick.bind(this), this.speed);
+      },
+      pause: function() {
+        window.clearTimeout(this.ticker);
+      },
+      unpause: function() {
+        this.ticker = window.setTimeout(this.tick.bind(this), this.speed);
+      },
+      restart: function() {
+        window.clearTimeout(this.ticker);
+        this.counter = this.duration;
+        this.start();
+      }
+    }, {});
+  }();
+  var s = new Timer(50, 10000);
   s.start();
-  window.setInterval(s.log.bind(s), 200);
   return {};
 });
 System.get("../../src/time_objects.js" + '');
