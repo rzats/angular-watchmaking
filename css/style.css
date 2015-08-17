@@ -1,0 +1,24 @@
+fieldset
+{
+    width: 30%;
+    line-height: 150%;
+}
+
+label
+{
+    float: left;
+    width: 50%;
+    margin-right: 0.5em;
+    text-align: right;
+}
+
+input[type="button"]
+{
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+}
+
+.buttonContainer
+{
+    text-align: center;
+}
