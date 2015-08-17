@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TimingApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Stopwatch and Timer objects</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="src/time_objects.js"></script>
+</head>
+
+<body>
+
+<form ng-controller="StopwatchController">
+    <fieldset>
+        <legend>Stopwatch</legend>
+
+        <label for="sc-speed">Speed between ticks (in ms):</label>
+        <input type="number" ng-model="speed" id="sc-speed"><br/>
+
+        <label for="sc-inc">Incremented value:</label>
+        <input type="number" ng-model="increment" id="sc-inc"><br/>
+
+        <label for="sc-count">Counter:</label>
+        <input type="number" value="{{counter}}" id="sc-count" readonly><br/>
+
+        <div class="buttonContainer">
+            <input type="button" ng-disabled="started" ng-click="start()" value="Start">
+            <input type="button" ng-click="restart()" value="Restart">
+            <input type="button" ng-disabled="paused" ng-click="pause()" value="Pause">
+            <input type="button" ng-disabled="!paused" ng-click="unpause()" value="Unpause">
+        </div>
+    </fieldset>
+</form>
+
+<form ng-controller="TimerController">
+    <fieldset>
+        <legend>Timer</legend>
+
+        <label for="tm-countdown">Countdown time:</label>
+        <input type="number" ng-model="countdown" id="tm-countdown"><br/>
+
+        <label for="tm-speed">Speed between ticks (in ms):</label>
+        <input type="number" ng-model="speed" id="tm-speed"><br/>
+
+        <label for="tm-dec">Decremented value:</label>
+        <input type="number" ng-model="decrement" id="tm-dec"><br/>
+
+        <label for="tm-count">Counter:</label>
+        <input type="number" value="{{counter}}" id="tm-count" readonly><br/>
+
+        <div class="buttonContainer">
+            <input type="button" ng-disabled="started" ng-click="start()" value="Start">
+            <input type="button" ng-click="restart()" value="Restart">
+            <input type="button" ng-disabled="paused" ng-click="pause()" value="Pause">
+            <input type="button" ng-disabled="!paused" ng-click="unpause()" value="Unpause">
+        </div>
+    </fieldset>
+</form>
+
+</body>
+
+</html>
