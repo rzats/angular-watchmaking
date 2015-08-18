@@ -26,9 +26,9 @@
 
         <div class="buttonContainer">
             <input type="button" ng-disabled="started" ng-click="start()" value="Start">
-            <input type="button" ng-click="restart()" value="Restart">
-            <input type="button" ng-disabled="paused" ng-click="pause()" value="Pause">
-            <input type="button" ng-disabled="!paused" ng-click="unpause()" value="Unpause">
+            <input type="button" ng-disabled="!started" ng-click="restart()" value="Restart">
+            <input type="button" ng-disabled="!started || paused" ng-click="pause()" value="Pause">
+            <input type="button" ng-disabled="!started || !paused" ng-click="unpause()" value="Unpause">
         </div>
     </fieldset>
 </form>
@@ -51,9 +51,9 @@
 
         <div class="buttonContainer">
             <input type="button" ng-disabled="started" ng-click="start()" value="Start">
-            <input type="button" ng-click="restart()" value="Restart">
-            <input type="button" ng-disabled="paused" ng-click="pause()" value="Pause">
-            <input type="button" ng-disabled="!paused" ng-click="unpause()" value="Unpause">
+            <input type="button" ng-disabled="!started" ng-click="restart()" value="Restart">
+            <input type="button" ng-disabled="!started || paused" ng-click="pause()" value="Pause">
+            <input type="button" ng-disabled="!started || !paused" ng-click="unpause()" value="Unpause">
         </div>
     </fieldset>
 </form>
