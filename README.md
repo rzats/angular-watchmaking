@@ -1,2 +1,2 @@
 # angular-watchmaking
-Simple stopwatch and timer objects created using AngularJS / ECMAScript6.
+Simple stopwatch and timer objects created using AngularJS.
